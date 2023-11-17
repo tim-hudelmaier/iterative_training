@@ -25,6 +25,8 @@ import pandas as pd
 from pf_wrapper import train_run
 
 n_samples = 5
+model_type = "xgboost"
+additional_estimators = 50
 
 sample_df_path = Path("./samples")
 
@@ -54,14 +56,22 @@ for train_combination in train_combinations:
         input_df = pd.concat([pd.read_pickle(f) for f in train_combination])
 
         # train model
-        config = {}
+        config = {
+            "conf": {
+                "model_type": model_type,
+                "mode": "train" if i == 0 else "finetune",
+                "additional_estimators": 0 if i == 0 else additional_estimators,
+                "pretrained_model_path": output_path,
+            },
+            "universal_feature_cols": False,
+        }
         output_path = ""
         train_run(config, output_path, input_df)
 
         # eval using all data
         other_config = {
             "conf": {
-                "model_type": "xgboost",
+                "model_type": model_type,
                 "mode": "eval",
                 "pretrained_model_path": output_path,
             },
