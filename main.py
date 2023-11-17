@@ -60,8 +60,6 @@ if __name__ == "__main__":
     spectrum_ids = df["spectrum_id"].unique()
     for sample_ids in spectrum_ids.sample(frac=1 / n_samples):
         # md5 hash all sample spectrum ids
-        # the idea here is to always hash all sorted ids, so I can check if a model with the
-        # same spectrum ids has already been trained
         used_spectrum_ids_md5 = get_idx_md5(sample_ids, sort_ids=True)
 
         # save as pkl
