@@ -34,8 +34,8 @@ def get_idx_md5(id_list: list, sort_ids=True):
     Returns:
         md5 hash of all spectrum ids
     """
-    all_ids_str = "".join(sorted(id_list.copy())) if sorted else "".join(
-        sample_ids.copy())
+    all_ids_str = "".join(sorted(id_list.copy())) if sort_ids else "".join(
+        id_list.copy())
     return hashlib.md5(all_ids_str.encode()).hexdigest()
 
 
@@ -66,6 +66,9 @@ if __name__ == "__main__":
 
     df = pd.DataFrame()
     spectrum_ids = df["spectrum_id"].unique()
+
+    all_spectrum_ids_md5 = get_idx_md5(spectrum_ids, sort_ids=True)
+
     for sample_ids in spectrum_ids.sample(frac=1 / n_samples):
         # md5 hash all sample spectrum ids
         used_spectrum_ids_md5 = get_idx_md5(sample_ids, sort_ids=True)
@@ -86,7 +89,8 @@ if __name__ == "__main__":
         pretrained_model_path = None
         model_output_path = None
 
-        train_path_md5 = get_idx_md5([str(f) for f in train_combination], sort_ids=False)
+        train_path_md5 = get_idx_md5([str(f) for f in train_combination],
+                                     sort_ids=False)
 
         for i, sample_file in enumerate(train_combination):
             if i == len(train_combination) - 1:
@@ -137,7 +141,7 @@ if __name__ == "__main__":
                 },
                 "universal_feature_cols": False,
             }
-            eval_df = pd.read_pickle(train_combination[i+1])
+            eval_df = pd.read_pickle(train_combination[i + 1])
             eval_data_md5 = get_idx_md5(eval_df["spectrum_id"].unique(), sort_ids=True)
             eval_output_path = evals_dir / f"eval__path_{train_path_md5}__iteration_{i}__data_{eval_data_md5}.csv"
             train_run(other_config, eval_output_path, eval_df)
@@ -145,15 +149,24 @@ if __name__ == "__main__":
 # get full eval df by concatenating all eval dfs for one iteration
 for iteration in range(n_samples):
     eval_dfs = [p for p in evals_dir.glob(f"*iteration_{iteration}*")]
+    eval_md5s = [p.name.split("__")[-1].split(".")[0] for p in eval_dfs]
+
     eval_df = pd.concat([pd.read_csv(p) for p in eval_dfs])
 
-# drop rank, top_target, q-value columns from eval runs
-rank_cols = [c for c in eval_df.columns if c.startswith("rank_")]
-top_target_cols = [c for c in eval_df.columns if c.startswith("top_target_")]
-q_value_cols = [c for c in eval_df.columns if c.startswith("q-value_")]
-eval_df.drop(rank_cols + top_target_cols + q_value_cols, axis=1, inplace=True)
+    # check all spectrums have been evaluated
+    eval_spectrum_ids = eval_df["spectrum_id"].unique()
+    eval_spectrum_ids_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
 
-eval_md5s = [p.name.split("__")[-1].split(".")[0] for p in eval_dfs]
-consolidate_evals_md5 = get_idx_md5(eval_md5s, sort_ids=True)
-eval_df.to_csv(results_dir / f"consolidated_eval__path_{train_path_md5}__iteration_{iteration}__data_{eval_data_md5}.csv")
+    if eval_spectrum_ids_md5 != all_spectrum_ids_md5:
+        raise ValueError("Not all spectrums have been evaluated!")
 
+    # drop rank, top_target, q-value columns from eval runs
+    rank_cols = [c for c in eval_df.columns if c.startswith("rank_")]
+    top_target_cols = [c for c in eval_df.columns if c.startswith("top_target_")]
+    q_value_cols = [c for c in eval_df.columns if c.startswith("q-value_")]
+    eval_df.drop(rank_cols + top_target_cols + q_value_cols, axis=1, inplace=True)
+
+    consolidate_evals_md5 = get_idx_md5(eval_md5s, sort_ids=True)
+    eval_df.to_csv(
+        evals_dir / f"consolidated_eval__data_{consolidate_evals_md5}__iteration_{iteration}.csv"
+    )
