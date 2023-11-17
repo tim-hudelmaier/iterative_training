@@ -39,6 +39,32 @@ def get_idx_md5(id_list: list, sort_ids=True):
     return hashlib.md5(all_ids_str.encode()).hexdigest()
 
 
+def create_dirs(base_dir: Path) -> dict:
+    """Create necessary directories."""
+    sample_dir = base_dir / "sample_dfs"
+    if not sample_dir.exists():
+        sample_dir.mkdir()
+
+    models_dir = base_dir / "models"
+    if not models_dir.exists():
+        models_dir.mkdir()
+
+    results_dir = base_dir / "results"
+    if not results_dir.exists():
+        results_dir.mkdir()
+
+    evals_dir = base_dir / "evals"
+    if not evals_dir.exists():
+        evals_dir.mkdir()
+
+    return {
+        "sample_dir": sample_dir,
+        "models_dir": models_dir,
+        "results_dir": results_dir,
+        "evals_dir": evals_dir,
+    }
+
+
 if __name__ == "__main__":
     n_samples = 5
     model_type = "xgboost"
@@ -46,23 +72,8 @@ if __name__ == "__main__":
     file_extension = "json" if model_type == "xgboost" else "pkl"
     universal_feature_cols = False
 
-    base_path = Path("./")
-    sample_df_path = base_path / "sample_dfs"
-
-    if not sample_df_path.exists():
-        sample_df_path.mkdir()
-
-    models_dir = base_path / "models"
-    if not models_dir.exists():
-        models_dir.mkdir()
-
-    results_dir = base_path / "results"
-    if not results_dir.exists():
-        results_dir.mkdir()
-
-    evals_dir = base_path / "evals"
-    if not evals_dir.exists():
-        evals_dir.mkdir()
+    base_dir = Path("./")
+    dir_dict = create_dirs(base_dir)
 
     df = pd.DataFrame()
     spectrum_ids = df["spectrum_id"].unique()
@@ -76,10 +87,10 @@ if __name__ == "__main__":
         # save as pkl
         sample_df = df[df["spectrum_id"].isin(sample_ids)].copy()
         sample_df.to_pickle(
-            sample_df_path / f"sample_{used_spectrum_ids_md5}.{file_extension}")
+            dir_dict["sample_dir"] / f"sample_{used_spectrum_ids_md5}.{file_extension}")
 
     # get all sample files
-    sample_files = [p for p in sample_df_path.glob("*.pkl")]
+    sample_files = [p for p in dir_dict["sample_dir"].glob("*.pkl")]
 
     # get all possible ways to train
     train_combinations = permutations(sample_files, n_samples)
@@ -110,10 +121,10 @@ if __name__ == "__main__":
                 new_model_md5 = input_spectrum_ids_md5
 
             # check if model has already been trained
-            if (models_dir / f"model_{new_model_md5}.{file_extension}").exists():
+            if (dir_dict["models_dir"] / f"model_{new_model_md5}.{file_extension}").exists():
                 continue
 
-            model_output_path = models_dir / f"model_{new_model_md5}.{file_extension}"
+            model_output_path = dir_dict["models_dir"] / f"model_{new_model_md5}.{file_extension}"
 
             # train model
             config = {
@@ -126,7 +137,7 @@ if __name__ == "__main__":
                 },
                 "universal_feature_cols": universal_feature_cols,
             }
-            output_path = results_dir / f"train__path_{train_path_md5}__iteration_{i}__data_{new_model_md5}.csv"
+            output_path = dir_dict["results_dir"] / f"train__path_{train_path_md5}__iteration_{i}__data_{new_model_md5}.csv"
             train_run(config, output_path, input_df)
 
             # set pretrained model path for next run
@@ -143,30 +154,30 @@ if __name__ == "__main__":
             }
             eval_df = pd.read_pickle(train_combination[i + 1])
             eval_data_md5 = get_idx_md5(eval_df["spectrum_id"].unique(), sort_ids=True)
-            eval_output_path = evals_dir / f"eval__path_{train_path_md5}__iteration_{i}__data_{eval_data_md5}.csv"
+            eval_output_path = dir_dict["evals_dir"] / f"eval__path_{train_path_md5}__iteration_{i}__data_{eval_data_md5}.csv"
             train_run(other_config, eval_output_path, eval_df)
 
-# get full eval df by concatenating all eval dfs for one iteration
-for iteration in range(n_samples):
-    eval_dfs = [p for p in evals_dir.glob(f"*iteration_{iteration}*")]
-    eval_md5s = [p.name.split("__")[-1].split(".")[0] for p in eval_dfs]
+    # get full eval df by concatenating all eval dfs for one iteration
+    for iteration in range(n_samples):
+        eval_dfs = [p for p in dir_dict["evals_dir"].glob(f"*iteration_{iteration}*")]
+        eval_md5s = [p.name.split("__")[-1].split(".")[0] for p in eval_dfs]
 
-    eval_df = pd.concat([pd.read_csv(p) for p in eval_dfs])
+        eval_df = pd.concat([pd.read_csv(p) for p in eval_dfs])
 
-    # check all spectrums have been evaluated
-    eval_spectrum_ids = eval_df["spectrum_id"].unique()
-    eval_spectrum_ids_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
+        # check all spectrums have been evaluated
+        eval_spectrum_ids = eval_df["spectrum_id"].unique()
+        eval_spectrum_ids_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
 
-    if eval_spectrum_ids_md5 != all_spectrum_ids_md5:
-        raise ValueError("Not all spectrums have been evaluated!")
+        if eval_spectrum_ids_md5 != all_spectrum_ids_md5:
+            raise ValueError("Not all spectrums have been evaluated!")
 
-    # drop rank, top_target, q-value columns from eval runs
-    rank_cols = [c for c in eval_df.columns if c.startswith("rank_")]
-    top_target_cols = [c for c in eval_df.columns if c.startswith("top_target_")]
-    q_value_cols = [c for c in eval_df.columns if c.startswith("q-value_")]
-    eval_df.drop(rank_cols + top_target_cols + q_value_cols, axis=1, inplace=True)
+        # drop rank, top_target, q-value columns from eval runs
+        rank_cols = [c for c in eval_df.columns if c.startswith("rank_")]
+        top_target_cols = [c for c in eval_df.columns if c.startswith("top_target_")]
+        q_value_cols = [c for c in eval_df.columns if c.startswith("q-value_")]
+        eval_df.drop(rank_cols + top_target_cols + q_value_cols, axis=1, inplace=True)
 
-    consolidate_evals_md5 = get_idx_md5(eval_md5s, sort_ids=True)
-    eval_df.to_csv(
-        evals_dir / f"consolidated_eval__data_{consolidate_evals_md5}__iteration_{iteration}.csv"
-    )
+        consolidate_evals_md5 = get_idx_md5(eval_md5s, sort_ids=True)
+        eval_df.to_csv(
+            dir_dict["evals_dir"] / f"consolidated_eval__data_{consolidate_evals_md5}__iteration_{iteration}.csv"
+        )
