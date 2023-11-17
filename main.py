@@ -16,13 +16,14 @@
 - different splits (size of spectra per split) go for n(splits) = [1:10]
 - train with xgboost extend, random forest xtend and xgboost prune
 """
+
 from itertools import permutations
 import hashlib
 from pathlib import Path
 
 import pandas as pd
 
-from pf_wrapper import train_run
+from pf_wrapper import train_run, consolidate_evals
 
 
 def get_idx_md5(id_list: list, sort_ids=True):
@@ -87,7 +88,8 @@ if __name__ == "__main__":
         # save as pkl
         sample_df = df[df["spectrum_id"].isin(sample_ids)].copy()
         sample_df.to_pickle(
-            dir_dict["sample_dir"] / f"sample_{used_spectrum_ids_md5}.{file_extension}")
+            dir_dict["sample_dir"] / f"sample_{used_spectrum_ids_md5}.{file_extension}"
+        )
 
     # get all sample files
     sample_files = [p for p in dir_dict["sample_dir"].glob("*.pkl")]
@@ -178,6 +180,9 @@ if __name__ == "__main__":
         eval_df.drop(rank_cols + top_target_cols + q_value_cols, axis=1, inplace=True)
 
         consolidate_evals_md5 = get_idx_md5(eval_md5s, sort_ids=True)
-        eval_df.to_csv(
-            dir_dict["evals_dir"] / f"consolidated_eval__data_{consolidate_evals_md5}__iteration_{iteration}.csv"
+        output_path = dir_dict["evals_dir"] / f"consolidated_eval__data_{consolidate_evals_md5}__iteration_{iteration}.csv"
+        consolidate_evals(
+            config={},
+            output_path=output_path,
+            trained_df=eval_df
         )
