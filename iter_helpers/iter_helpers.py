@@ -109,7 +109,7 @@ def generate_and_pickle_samples(
     return all_samples_md5
 
 
-def generate_next_train_run(sample_files):
+def generate_next_train_run(sample_files, mode=permutations):
     train_combinations = permutations(sample_files, len(sample_files))
 
     for train_combination in train_combinations:
