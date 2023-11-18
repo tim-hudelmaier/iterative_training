@@ -1,3 +1,4 @@
+import hashlib
 from pathlib import Path
 
 import pytest
@@ -69,3 +70,34 @@ def test_generate_and_pickle_samples():
     for item in test_dir.iterdir():
         item.unlink()
     test_dir.rmdir()
+
+
+def test_get_idx_md5_with_list():
+    ids = ["id3", "id1", "id2"]
+    sorted_ids = sorted(ids)
+    assert get_idx_md5(ids) == hashlib.md5("".join(sorted_ids).encode()).hexdigest()
+
+
+def test_get_idx_md5_with_series():
+    ids = pd.Series(["id3", "id1", "id2", "id1"])  # Includes a duplicate
+    unique_sorted_ids = sorted(ids.unique())
+    assert (
+        get_idx_md5(ids) == hashlib.md5("".join(unique_sorted_ids).encode()).hexdigest()
+    )
+
+
+def test_get_idx_md5_with_string():
+    id_str = "id1"
+    assert get_idx_md5(id_str) == hashlib.md5(id_str.encode()).hexdigest()
+
+
+def test_get_idx_md5_with_invalid_type():
+    with pytest.raises(ValueError):
+        get_idx_md5(123)  # Using an integer should raise a ValueError
+
+
+def test_get_idx_md5_sorting_behavior():
+    ids1 = ["id3", "id1", "id2"]
+    ids2 = ["id2", "id1", "id3"]
+    assert get_idx_md5(ids1, sort_ids=True) == get_idx_md5(ids2, sort_ids=True)
+    assert get_idx_md5(ids1, sort_ids=False) != get_idx_md5(ids2, sort_ids=False)
