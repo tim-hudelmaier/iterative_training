@@ -109,8 +109,19 @@ def generate_and_pickle_samples(
     return all_samples_md5
 
 
+def fixed_start_permutations(lst):
+    """Generate fixed-start permutations (rolling behavior)."""
+    for i in range(len(lst)):
+        yield lst[i:] + lst[:i]
+
+
 def generate_next_train_run(sample_files, mode=permutations):
-    train_combinations = permutations(sample_files, len(sample_files))
+    if mode == "permutations":
+        train_combinations = permutations(sample_files, len(sample_files))
+    elif mode == "rolling":
+        train_combinations = fixed_start_permutations(sample_files)
+    else:
+        raise ValueError("Invalid mode. Choose 'permutations' or 'rolling'.")
 
     for train_combination in train_combinations:
         train_path_md5 = get_idx_md5(
