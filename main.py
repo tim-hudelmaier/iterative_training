@@ -75,6 +75,18 @@ def drop_cols(df: pd.DataFrame, col_prefixes: list) -> pd.DataFrame:
     return df
 
 
+def generate_eval_df(n_iterations: int, evals_dir: Path):
+    for iteration in range(n_iterations):
+        eval_dfs = [p for p in evals_dir.glob(f"*iteration_{iteration}*")]
+
+        eval_df = pd.concat([pd.read_csv(p) for p in eval_dfs])
+
+        eval_spectrum_ids = eval_df["spectrum_id"].unique()
+        eval_spectrum_ids_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
+
+        yield iteration, eval_df, eval_spectrum_ids_md5
+
+
 if __name__ == "__main__":
     n_samples = 5
     model_type = "xgboost"
@@ -132,10 +144,12 @@ if __name__ == "__main__":
                 new_model_md5 = input_spectrum_ids_md5
 
             # check if model has already been trained
-            if (dir_dict["models_dir"] / f"model_{new_model_md5}.{file_extension}").exists():
+            if (dir_dict[
+                    "models_dir"] / f"model_{new_model_md5}.{file_extension}").exists():
                 continue
 
-            model_output_path = dir_dict["models_dir"] / f"model_{new_model_md5}.{file_extension}"
+            model_output_path = dir_dict[
+                                    "models_dir"] / f"model_{new_model_md5}.{file_extension}"
 
             # train model
             config = {
@@ -148,7 +162,8 @@ if __name__ == "__main__":
                 },
                 "universal_feature_cols": universal_feature_cols,
             }
-            output_path = dir_dict["results_dir"] / f"train__path_{train_path_md5}__iteration_{i}__data_{new_model_md5}.csv"
+            output_path = dir_dict[
+                              "results_dir"] / f"train__path_{train_path_md5}__iteration_{i}__data_{new_model_md5}.csv"
             train_run(config, output_path, input_df)
 
             # set pretrained model path for next run
@@ -165,32 +180,22 @@ if __name__ == "__main__":
             }
             eval_df = pd.read_pickle(train_combination[i + 1])
             eval_data_md5 = get_idx_md5(eval_df["spectrum_id"].unique(), sort_ids=True)
-            eval_output_path = dir_dict["evals_dir"] / f"eval__path_{train_path_md5}__iteration_{i}__data_{eval_data_md5}.csv"
+            eval_output_path = dir_dict[
+                                   "evals_dir"] / f"eval__path_{train_path_md5}__iteration_{i}__data_{eval_data_md5}.csv"
             train_run(other_config, eval_output_path, eval_df)
 
     # get full eval df by concatenating all eval dfs for one iteration
-    for iteration in range(n_samples):
-        eval_dfs = [p for p in dir_dict["evals_dir"].glob(f"*iteration_{iteration}*")]
-        eval_md5s = [p.name.split("__")[-1].split(".")[0] for p in eval_dfs]
-
-        eval_df = pd.concat([pd.read_csv(p) for p in eval_dfs])
-
-        # check all spectrums have been evaluated
-        eval_spectrum_ids = eval_df["spectrum_id"].unique()
-        eval_spectrum_ids_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
-
-        if eval_spectrum_ids_md5 != all_spectrum_ids_md5:
+    for i, eval_df, eval_data_md5 in generate_eval_df(n_samples, dir_dict["evals_dir"]):
+        if eval_data_md5 != all_spectrum_ids_md5:
             raise ValueError("Not all spectrums have been evaluated!")
 
         # drop rank, top_target, q-value columns from eval runs
         eval_df = drop_cols(eval_df, ["rank_", "top_target_", "q-value_"])
 
-        consolidate_evals_md5 = get_idx_md5(eval_md5s, sort_ids=True)
-        output_path = dir_dict["evals_dir"] / f"consolidated_eval__data_{consolidate_evals_md5}__iteration_{iteration}.csv"
+        output_path = dir_dict[
+                          "evals_dir"] / f"consolidated_eval__data_{eval_data_md5}__iteration_{i}.csv"
         consolidate_evals(
-            config={
-                "initial_engine": "some_engine",
-            },
+            config={"initial_engine": "some_engine"},
             output_path=output_path,
-            trained_df=eval_df
+            trained_df=eval_df,
         )
