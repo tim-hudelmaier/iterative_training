@@ -62,16 +62,16 @@ def drop_cols(df: pd.DataFrame, col_prefixes: list) -> pd.DataFrame:
     return df
 
 
-def generate_eval_df(n_iterations: int, evals_dir: Path):
+def generate_eval_df(n_iterations: int, evals_dir: Path, col="spectrum_id"):
     for iteration in range(n_iterations):
         eval_dfs = [p for p in evals_dir.glob(f"*iteration_{iteration}*")]
 
         eval_df = pd.concat([pd.read_csv(p) for p in eval_dfs])
 
-        eval_spectrum_ids = eval_df["spectrum_id"].unique()
-        eval_spectrum_ids_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
+        eval_spectrum_ids = eval_df[col].unique()
+        eval_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
 
-        yield iteration, eval_df, eval_spectrum_ids_md5
+        yield iteration, eval_df, eval_md5
 
 
 def generate_and_pickle_samples(
