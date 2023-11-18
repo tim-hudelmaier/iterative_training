@@ -1,4 +1,5 @@
 import hashlib
+from itertools import permutations
 from pathlib import Path
 
 import pytest
@@ -8,6 +9,7 @@ from iter_helpers.iter_helpers import (
     drop_cols,
     generate_and_pickle_samples,
     get_idx_md5,
+    generate_next_train_run,
 )
 
 
@@ -101,3 +103,44 @@ def test_get_idx_md5_sorting_behavior():
     ids2 = ["id2", "id1", "id3"]
     assert get_idx_md5(ids1, sort_ids=True) == get_idx_md5(ids2, sort_ids=True)
     assert get_idx_md5(ids1, sort_ids=False) != get_idx_md5(ids2, sort_ids=False)
+
+
+def test_generate_next_train_run():
+    sample_files = ["A", "B", "C"]
+    gen = generate_next_train_run(sample_files)
+
+    expected_outputs = [
+        (0, "A", "B", get_idx_md5(["A", "B", "C"], sort_ids=False), False),
+        (1, "B", "C", get_idx_md5(["A", "B", "C"], sort_ids=False), False),
+        (2, "C", None, get_idx_md5(["A", "B", "C"], sort_ids=False), True),
+        (0, "A", "C", get_idx_md5(["A", "C", "B"], sort_ids=False), False),
+        (1, "C", "B", get_idx_md5(["A", "C", "B"], sort_ids=False), False),
+        (2, "B", None, get_idx_md5(["A", "C", "B"], sort_ids=False), True),
+        (0, "B", "A", get_idx_md5(["B", "A", "C"], sort_ids=False), False),
+        (1, "A", "C", get_idx_md5(["B", "A", "C"], sort_ids=False), False),
+        (2, "C", None, get_idx_md5(["B", "A", "C"], sort_ids=False), True),
+        (0, "B", "C", get_idx_md5(["B", "C", "A"], sort_ids=False), False),
+        (1, "C", "A", get_idx_md5(["B", "C", "A"], sort_ids=False), False),
+        (2, "A", None, get_idx_md5(["B", "C", "A"], sort_ids=False), True),
+        (0, "C", "A", get_idx_md5(["C", "A", "B"], sort_ids=False), False),
+        (1, "A", "B", get_idx_md5(["C", "A", "B"], sort_ids=False), False),
+        (2, "B", None, get_idx_md5(["C", "A", "B"], sort_ids=False), True),
+        (0, "C", "B", get_idx_md5(["C", "B", "A"], sort_ids=False), False),
+        (1, "B", "A", get_idx_md5(["C", "B", "A"], sort_ids=False), False),
+        (2, "A", None, get_idx_md5(["C", "B", "A"], sort_ids=False), True),
+    ]
+
+    for i, (
+        idx,
+        train_sample_file,
+        eval_sample_file,
+        md5,
+        finished_path,
+    ) in enumerate(gen):
+        assert (
+            idx,
+            train_sample_file,
+            eval_sample_file,
+            md5,
+            finished_path,
+        ) == expected_outputs[i]
