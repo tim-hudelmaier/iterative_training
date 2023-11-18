@@ -66,6 +66,15 @@ def create_dirs(base_dir: Path) -> dict:
     }
 
 
+def drop_cols(df: pd.DataFrame, col_prefixes: list) -> pd.DataFrame:
+    """Drop columns from dataframe."""
+    cols_to_drop = []
+    for col_prefix in col_prefixes:
+        cols_to_drop += [c for c in df.columns if c.startswith(col_prefix)]
+    df.drop(cols_to_drop, axis=1, inplace=True)
+    return df
+
+
 if __name__ == "__main__":
     n_samples = 5
     model_type = "xgboost"
@@ -174,10 +183,7 @@ if __name__ == "__main__":
             raise ValueError("Not all spectrums have been evaluated!")
 
         # drop rank, top_target, q-value columns from eval runs
-        rank_cols = [c for c in eval_df.columns if c.startswith("rank_")]
-        top_target_cols = [c for c in eval_df.columns if c.startswith("top_target_")]
-        q_value_cols = [c for c in eval_df.columns if c.startswith("q-value_")]
-        eval_df.drop(rank_cols + top_target_cols + q_value_cols, axis=1, inplace=True)
+        eval_df = drop_cols(eval_df, ["rank_", "top_target_", "q-value_"])
 
         consolidate_evals_md5 = get_idx_md5(eval_md5s, sort_ids=True)
         output_path = dir_dict["evals_dir"] / f"consolidated_eval__data_{consolidate_evals_md5}__iteration_{iteration}.csv"
