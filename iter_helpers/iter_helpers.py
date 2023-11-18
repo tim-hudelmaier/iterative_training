@@ -19,8 +19,14 @@ def get_idx_md5(id_list: list, sort_ids=True):
         return hashlib.md5(id_list.encode()).hexdigest()
     elif isinstance(id_list, pd.Series):
         id_list = id_list.unique().tolist()
+    elif isinstance(id_list, list):
+        pass
+    elif isinstance(id_list, np.ndarray):
+        id_list = np.unique(id_list).tolist()
     else:
-        ValueError(f"id_list must be a list or pd.Series, you provided {type(id_list)}")
+        raise ValueError(
+            f"id_list must be a list or pd.Series, you provided {type(id_list)}"
+        )
     all_ids_str = (
         "".join(sorted(id_list.copy())) if sort_ids else "".join(id_list.copy())
     )
