@@ -188,7 +188,9 @@ if __name__ == "__main__":
         consolidate_evals_md5 = get_idx_md5(eval_md5s, sort_ids=True)
         output_path = dir_dict["evals_dir"] / f"consolidated_eval__data_{consolidate_evals_md5}__iteration_{iteration}.csv"
         consolidate_evals(
-            config={},
+            config={
+                "initial_engine": "some_engine",
+            },
             output_path=output_path,
             trained_df=eval_df
         )
