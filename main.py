@@ -87,6 +87,45 @@ def generate_eval_df(n_iterations: int, evals_dir: Path):
         yield iteration, eval_df, eval_spectrum_ids_md5
 
 
+def generate_and_pickle_samples(
+        df: pd.DataFrame,
+        sample_group_col: str,
+        n_samples: int,
+        sample_dir: Path,
+        file_extension: str
+):
+    """Generate and pickle samples from input df."""
+    available_samples = df[sample_group_col].unique()
+
+    all_samples_md5 = get_idx_md5(available_samples, sort_ids=True)
+
+    for samples in available_samples.sample(frac=1 / n_samples):
+        # md5 hash all sample spectrum ids
+        used_samples_md5 = get_idx_md5(samples, sort_ids=True)
+
+        # save as pkl
+        sample_df = df[df[sample_group_col].isin(samples)].copy()
+        sample_df.to_pickle(
+            sample_dir / f"sample_{used_samples_md5}.{file_extension}"
+        )
+
+    return all_samples_md5
+
+
+def generate_next_train_run(sample_files):
+    train_combinations = permutations(sample_files, len(sample_files))
+
+    for train_combination in train_combinations:
+        train_path_md5 = get_idx_md5([str(f) for f in train_combination],
+                                     sort_ids=False)
+
+        for i, train_sample_file in enumerate(train_combination):
+            eval_sample_file = train_combination[i + 1] if i < len(
+                train_combination) - 1 else None
+            finished_path = True if i == len(train_combination) - 1 else False
+            yield i, train_sample_file, eval_sample_file, train_path_md5, finished_path
+
+
 if __name__ == "__main__":
     n_samples = 5
     model_type = "xgboost"
@@ -98,91 +137,81 @@ if __name__ == "__main__":
     dir_dict = create_dirs(base_dir)
 
     df = pd.DataFrame()
-    spectrum_ids = df["spectrum_id"].unique()
 
-    all_spectrum_ids_md5 = get_idx_md5(spectrum_ids, sort_ids=True)
+    all_spectrum_ids_md5 = generate_and_pickle_samples(
+        df=df,
+        sample_group_col="spectrum_id",
+        n_samples=n_samples,
+        sample_dir=dir_dict["sample_dir"],
+        file_extension=file_extension,
+    )
 
-    for sample_ids in spectrum_ids.sample(frac=1 / n_samples):
-        # md5 hash all sample spectrum ids
-        used_spectrum_ids_md5 = get_idx_md5(sample_ids, sort_ids=True)
-
-        # save as pkl
-        sample_df = df[df["spectrum_id"].isin(sample_ids)].copy()
-        sample_df.to_pickle(
-            dir_dict["sample_dir"] / f"sample_{used_spectrum_ids_md5}.{file_extension}"
-        )
-
-    # get all sample files
     sample_files = [p for p in dir_dict["sample_dir"].glob("*.pkl")]
 
-    # get all possible ways to train
-    train_combinations = permutations(sample_files, n_samples)
+    pretrained_model_path = None
+    model_output_path = None
 
     # training
-    for train_combination in train_combinations:
-        pretrained_model_path = None
-        model_output_path = None
+    for i, train_sample_file, eval_sample_file, train_path_md5, finished_path in generate_next_train_run(
+            sample_files):
+        if finished_path:
+            pretrained_model_path = None
+            model_output_path = None
+            continue
 
-        train_path_md5 = get_idx_md5([str(f) for f in train_combination],
-                                     sort_ids=False)
+        input_df = pd.read_pickle(train_sample_file)
 
-        for i, sample_file in enumerate(train_combination):
-            if i == len(train_combination) - 1:
-                break
+        # calculate hashes
+        input_spectrum_ids = input_df["spectrum_id"].unique()
+        input_spectrum_ids_md5 = get_idx_md5(input_spectrum_ids, sort_ids=True)
 
-            input_df = pd.read_pickle(sample_file)
+        if pretrained_model_path is not None:
+            model_md5_str = pretrained_model_path.split("_")[-1].split(".")[0]
+            new_model_md5 = get_idx_md5([model_md5_str, input_spectrum_ids_md5],
+                                        sort_ids=False, )
+        else:
+            new_model_md5 = input_spectrum_ids_md5
 
-            # calculate hashes
-            input_spectrum_ids = input_df["spectrum_id"].unique()
-            input_spectrum_ids_md5 = get_idx_md5(input_spectrum_ids, sort_ids=True)
+        # check if model has already been trained
+        if (dir_dict[
+                "models_dir"] / f"model_{new_model_md5}.{file_extension}").exists():
+            continue
 
-            if pretrained_model_path is not None:
-                model_md5_str = pretrained_model_path.split("_")[-1].split(".")[0]
-                new_model_md5 = get_idx_md5([model_md5_str, input_spectrum_ids_md5],
-                                            sort_ids=False, )
-            else:
-                new_model_md5 = input_spectrum_ids_md5
+        model_output_path = dir_dict[
+                                "models_dir"] / f"model_{new_model_md5}.{file_extension}"
 
-            # check if model has already been trained
-            if (dir_dict[
-                    "models_dir"] / f"model_{new_model_md5}.{file_extension}").exists():
-                continue
+        # train model
+        config = {
+            "conf": {
+                "model_type": model_type,
+                "mode": "train" if i == 0 else "finetune",
+                "additional_estimators": 0 if i == 0 else additional_estimators,
+                "pretrained_model_path": pretrained_model_path,
+                "model_output_path": model_output_path,
+            },
+            "universal_feature_cols": universal_feature_cols,
+        }
+        output_path = dir_dict[
+                          "results_dir"] / f"train__path_{train_path_md5}__iteration_{i}__data_{new_model_md5}.csv"
+        train_run(config, output_path, input_df)
 
-            model_output_path = dir_dict[
-                                    "models_dir"] / f"model_{new_model_md5}.{file_extension}"
+        # set pretrained model path for next run
+        pretrained_model_path = model_output_path
 
-            # train model
-            config = {
-                "conf": {
-                    "model_type": model_type,
-                    "mode": "train" if i == 0 else "finetune",
-                    "additional_estimators": 0 if i == 0 else additional_estimators,
-                    "pretrained_model_path": pretrained_model_path,
-                    "model_output_path": model_output_path,
-                },
-                "universal_feature_cols": universal_feature_cols,
-            }
-            output_path = dir_dict[
-                              "results_dir"] / f"train__path_{train_path_md5}__iteration_{i}__data_{new_model_md5}.csv"
-            train_run(config, output_path, input_df)
-
-            # set pretrained model path for next run
-            pretrained_model_path = model_output_path
-
-            # eval using all data
-            other_config = {
-                "conf": {
-                    "model_type": model_type,
-                    "mode": "eval",
-                    "pretrained_model_path": pretrained_model_path,
-                },
-                "universal_feature_cols": False,
-            }
-            eval_df = pd.read_pickle(train_combination[i + 1])
-            eval_data_md5 = get_idx_md5(eval_df["spectrum_id"].unique(), sort_ids=True)
-            eval_output_path = dir_dict[
-                                   "evals_dir"] / f"eval__path_{train_path_md5}__iteration_{i}__data_{eval_data_md5}.csv"
-            train_run(other_config, eval_output_path, eval_df)
+        # eval using all data
+        other_config = {
+            "conf": {
+                "model_type": model_type,
+                "mode": "eval",
+                "pretrained_model_path": pretrained_model_path,
+            },
+            "universal_feature_cols": False,
+        }
+        eval_df = pd.read_pickle(eval_sample_file)
+        eval_data_md5 = get_idx_md5(eval_df["spectrum_id"].unique(), sort_ids=True)
+        eval_output_path = dir_dict[
+                               "evals_dir"] / f"eval__path_{train_path_md5}__iteration_{i}__data_{eval_data_md5}.csv"
+        train_run(other_config, eval_output_path, eval_df)
 
     # get full eval df by concatenating all eval dfs for one iteration
     for i, eval_df, eval_data_md5 in generate_eval_df(n_samples, dir_dict["evals_dir"]):
