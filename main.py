@@ -173,8 +173,7 @@ if __name__ == "__main__":
             new_model_md5 = input_spectrum_ids_md5
 
         # check if model has already been trained
-        if (dir_dict[
-                "models_dir"] / f"model_{new_model_md5}.{file_extension}").exists():
+        if (dir_dict["models_dir"] / f"model_{new_model_md5}.{file_extension}").exists():
             continue
 
         model_output_path = dir_dict[
