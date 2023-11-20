@@ -173,14 +173,14 @@ def test_generate_eval_df_consolidate_mode():
         {
             "spectrum_id": ["A", "B", "C", "D", "A", "B", "C", "D"],
             "score": [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5],
-            "is_decoy": [0, 0, 0, 0, 0, 0, 0, 1],
+            "is_decoy": [0, 0, 0, 0, 1, 1, 1, 1],
         }
     )
     iteration_2_df = pd.DataFrame(
         {
             "spectrum_id": ["A", "B", "C", "D", "A", "B", "C", "D"],
             "score": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
-            "is_decoy": [0, 0, 0, 0, 0, 0, 0, 1],
+            "is_decoy": [0, 0, 0, 0, 1, 1, 1, 1],
         }
     )
 
