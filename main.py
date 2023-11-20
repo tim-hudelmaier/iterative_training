@@ -21,6 +21,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from peptide_forest import PeptideForest
 from iter_helpers.pf_wrapper import train_run, consolidate_evals
 from iter_helpers.iter_helpers import (
     get_idx_md5,
@@ -41,7 +42,14 @@ if __name__ == "__main__":
     base_dir = Path("./")
     dir_dict = create_dirs(base_dir)
 
-    df = pd.DataFrame()
+    base_pf = PeptideForest(
+        config_path="config__PXD021874_total.json",
+        output=None
+    )
+    base_pf.prep_ursgal_csvs()
+    base_pf.calc_features()
+
+    df = base_pf.input_df.copy()
 
     all_spectrum_ids_md5 = generate_and_pickle_samples(
         df=df,
