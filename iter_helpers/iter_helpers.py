@@ -68,7 +68,9 @@ def drop_cols(df: pd.DataFrame, col_prefixes: list) -> pd.DataFrame:
     return df
 
 
-def generate_eval_df(n_iterations: int, evals_dir: Path, col="spectrum_id"):
+def generate_eval_df(
+    n_iterations: int, evals_dir: Path, method="consolidate", col="spectrum_id"
+):
     for iteration in range(n_iterations):
         eval_dfs = [p for p in evals_dir.glob(f"*iteration_{iteration}*")]
 
@@ -115,7 +117,7 @@ def fixed_start_permutations(lst):
         yield lst[i:] + lst[:i]
 
 
-def generate_next_train_run(sample_files, mode=permutations):
+def generate_next_train_run(sample_files, mode="permutations"):
     if mode == "permutations":
         train_combinations = permutations(sample_files, len(sample_files))
     elif mode == "rolling":
@@ -134,3 +136,44 @@ def generate_next_train_run(sample_files, mode=permutations):
             )
             finished_path = True if i == len(train_combination) - 1 else False
             yield i, train_sample_file, eval_sample_file, train_path_md5, finished_path
+
+
+if __name__ == "__main__":
+    dir = Path("../tests/_data")
+    dir.mkdir(exist_ok=True)
+
+    df = pd.DataFrame(
+        {
+            "spectrum_id": ["A", "B", "C", "D", "A", "B", "C", "D"],
+            "score": [1, 1, 1, 1, 1, 1, 1, 1],
+            "is_decoy": [0, 0, 0, 0, 0, 0, 0, 1],
+        }
+    )
+
+    generate_and_pickle_samples(
+        df,
+        sample_group_col="spectrum_id",
+        n_samples=3,
+        sample_dir=dir,
+        file_extension="pkl",
+    )
+
+    gen = generate_next_train_run([p for p in dir.glob("*.pkl")])
+
+    for i, train_sample_file, eval_sample_file, train_path_md5, finished_path in gen:
+        print(i, train_sample_file, eval_sample_file, train_path_md5, finished_path)
+
+        if finished_path:
+            continue
+
+        eval_df = pd.read_pickle(eval_sample_file)
+        eval_data_md5 = get_idx_md5(eval_df["spectrum_id"].unique(), sort_ids=True)
+        output_path = (
+            dir
+            / f"eval__path_{train_path_md5}__iteration_{i}__data_{eval_data_md5}.csv"
+        )
+
+        eval_df.to_csv(output_path, index=False)
+
+    for p in dir.glob("*.pkl"):
+        p.unlink()

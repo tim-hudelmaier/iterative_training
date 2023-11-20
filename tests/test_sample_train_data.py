@@ -1,5 +1,4 @@
 import hashlib
-from itertools import permutations
 from pathlib import Path
 
 import pytest
@@ -10,6 +9,7 @@ from iter_helpers.iter_helpers import (
     generate_and_pickle_samples,
     get_idx_md5,
     generate_next_train_run,
+    generate_eval_df,
 )
 
 
@@ -162,3 +162,36 @@ def test_generate_next_train_run(sample_files, mode, expected_outputs):
             md5,
             finished_path,
         ) == expected_outputs[i]
+
+
+def test_generate_eval_df_consolidate_mode():
+    test_dir = pytest._test_path / "_data"
+
+    original_md5 = get_idx_md5(["A", "B", "C", "D"], sort_ids=True)
+
+    iteration_1_df = pd.DataFrame(
+        {
+            "spectrum_id": ["A", "B", "C", "D", "A", "B", "C", "D"],
+            "score": [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5],
+            "is_decoy": [0, 0, 0, 0, 0, 0, 0, 1],
+        }
+    )
+    iteration_2_df = pd.DataFrame(
+        {
+            "spectrum_id": ["A", "B", "C", "D", "A", "B", "C", "D"],
+            "score": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+            "is_decoy": [0, 0, 0, 0, 0, 0, 0, 1],
+        }
+    )
+
+    expected_results = [iteration_1_df, iteration_2_df]
+
+    gen = generate_eval_df(n_iterations=3, evals_dir=test_dir)
+
+    for iteration, eval_df, eval_md5 in gen:
+        assert eval_md5 == original_md5
+
+        sorted_df = eval_df.sort_values(by=["spectrum_id"])
+        sorted_exp = expected_results[iteration - 1].sort_values(by=["spectrum_id"])
+
+        assert sorted_df.equals(sorted_exp)
