@@ -10,6 +10,7 @@ from iter_helpers.iter_helpers import (
     get_idx_md5,
     generate_next_train_run,
     generate_eval_df,
+    create_eval_df_sublists
 )
 
 
@@ -187,7 +188,7 @@ def test_generate_eval_df_consolidate_mode():
 
     expected_results = [iteration_1_df, iteration_2_df]
 
-    gen = generate_eval_df(n_iterations=2, evals_dir=test_dir)
+    gen = generate_eval_df(n_iterations=2, evals_dir=test_dir, method="consolidate")
 
     for iteration, eval_df, eval_md5 in gen:
         assert eval_md5 == original_md5
@@ -228,18 +229,86 @@ def test_generate_eval_df_rolling_mode():
     )
 
     expected_results = [
-        (iteration_1_df_A, iteration_1_df_B),
-        (iteration_2_df, iteration_2_df)
+        {
+            "A": iteration_1_df_A.sort_index(axis=1).sort_values(
+                by=["spectrum_id"]).reset_index(drop=True),
+            "B": iteration_1_df_B.sort_index(axis=1).sort_values(
+                by=["spectrum_id"]).reset_index(drop=True)
+        },
+        {
+            "A": iteration_2_df.sort_index(axis=1).sort_values(
+                by=["spectrum_id"]).reset_index(drop=True),
+            "B": iteration_2_df.sort_index(axis=1).sort_values(
+                by=["spectrum_id"]).reset_index(drop=True)
+        }
     ]
 
-    gen = generate_eval_df(n_iterations=2, evals_dir=test_dir)
+    gen = generate_eval_df(n_iterations=2, evals_dir=test_dir, method="rolling")
 
     for iteration, eval_df, eval_md5 in gen:
         assert eval_md5 == original_md5
 
         sorted_df = eval_df.sort_index(axis=1).sort_values(
             by=["spectrum_id"]).reset_index(drop=True)
-        sorted_exp = expected_results[iteration].sort_index(axis=1).sort_values(
-            by=["spectrum_id"]).reset_index(drop=True)
 
-        assert sorted_df.equals(sorted_exp)
+        assert sorted_df.equals(expected_results[iteration]["A"]) or sorted_df.equals(
+            expected_results[iteration]["B"])
+
+        if sorted_df.equals(expected_results[iteration]["A"]):
+            expected_results[iteration]["A"] = None
+        else:
+            expected_results[iteration]["B"] = None
+
+
+@pytest.mark.parametrize(
+    "input_list",
+    [
+        (
+                [
+                    "something__path_1__data_a.pkl",
+                    "something__path_2__data_b.pkl",
+                    "something__path_3__data_c.pkl",
+                    "something__path_4__data_a.pkl",
+                    "something__path_5__data_b.pkl",
+                    "something__path_6__data_c.pkl",
+                ]
+        ),
+        (
+                [
+                    "something__path_1__data_a.pkl",
+                    "something__path_2__data_b.pkl",
+                    "something__path_3__data_c.pkl",
+                    "something__path_4__data_a.pkl",
+                    "something__path_5__data_b.pkl",
+                    "something__path_6__data_c.pkl",
+                ]
+        ),
+        (
+                [
+                    "something__path_1__data_a.pkl",
+                    "something__path_2__data_b.pkl",
+                    "something__path_3__data_c.pkl",
+                    "something__path_4__data_a.pkl",
+                    "something__path_5__data_b.pkl",
+                    "something__path_6__data_c.pkl",
+                    "something__path_7__data_a.pkl",
+                    "something__path_8__data_b.pkl",
+                ]
+        ),
+
+    ]
+)
+def test_eval_df_sublists(input_list):
+    t = create_eval_df_sublists(input_list)
+    assert create_eval_df_sublists(input_list) == [
+        [
+            "something__path_1__data_a.pkl",
+            "something__path_2__data_b.pkl",
+            "something__path_3__data_c.pkl"
+        ],
+        [
+            "something__path_4__data_a.pkl",
+            "something__path_5__data_b.pkl",
+            "something__path_6__data_c.pkl",
+        ]
+    ]

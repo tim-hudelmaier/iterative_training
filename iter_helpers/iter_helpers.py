@@ -1,6 +1,7 @@
 from itertools import permutations
 import hashlib
 from pathlib import Path
+import re
 
 import numpy as np
 import pandas as pd
@@ -68,32 +69,97 @@ def drop_cols(df: pd.DataFrame, col_prefixes: list) -> pd.DataFrame:
     return df
 
 
-def generate_eval_df(
-        n_iterations: int, evals_dir: Path, method="consolidate",
-        idx_cols=None, score_cols=None, col="spectrum_id",
-):
+def create_eval_df_sublists(eval_df_paths: list) -> list:
+    """Create sublists of eval_df_paths based on data md5."""
+    eval_df_sublists = []
+
+    for i, eval_df_path in enumerate(eval_df_paths):
+        if isinstance(eval_df_path, Path):
+            match = re.search(r'__data_([A-Za-z0-9]+)', str(eval_df_path.name))
+        elif isinstance(eval_df_path, str):
+            match = re.search(r'__data_([A-Za-z0-9]+)', eval_df_path)
+        else:
+            raise TypeError(f"eval_df_paths elements have to be str or Path, you "
+                            f"provided {type(eval_df_path)}")
+
+        if match:
+            data_md5 = match.group(1)
+        else:
+            continue
+
+        if not eval_df_sublists:
+            eval_df_sublists.append({data_md5: eval_df_path})
+            continue
+
+        path_inserted = False
+        for i, sublist in enumerate(eval_df_sublists):
+            if data_md5 not in list(sublist.keys()):
+                eval_df_sublists[i][data_md5] = eval_df_path
+                path_inserted = True
+                break
+
+        if not path_inserted:
+            eval_df_sublists.append({data_md5: eval_df_path})
+
+    # ensure only full length lists are returned
+    max_length = max([len(list(sublist.keys())) for sublist in eval_df_sublists])
+
+    return [list(sublist.values()) for sublist in eval_df_sublists if
+            len(list(sublist.keys())) == max_length]
+
+
+def concat_and_aggreagte_dfs(df_paths: list, idx_cols: list=None, score_cols: list=None) -> pd.DataFrame:
     if idx_cols is None:
         idx_cols = ["spectrum_id", "is_decoy"]
     if score_cols is None:
         score_cols = ["score"]
+
+    df = pd.concat([pd.read_csv(p) for p in df_paths])
+
+    # warn that cols not in idx_cols or score_cols are dropped
+    for c in df.columns:
+        if c not in idx_cols and c not in score_cols:
+            print(f"Warning: dropping column {c} from eval_df.")
+
+    return df.groupby(idx_cols)[score_cols].mean().reset_index()
+
+
+
+def generate_eval_df(
+        n_iterations: int, evals_dir: Path, method="consolidate",
+        idx_cols=None, score_cols=None, col="spectrum_id",
+):
     for iteration in range(n_iterations):
-        eval_dfs = [p for p in evals_dir.glob(f"*iteration_{iteration}*")]
-
-        eval_df = pd.concat([pd.read_csv(p) for p in eval_dfs])
-
-        # warn that cols not in idx_cols or score_cols are dropped
-        for c in eval_df.columns:
-            if c not in idx_cols and c not in score_cols:
-                print(f"Warning: dropping column {c} from eval_df.")
-
         # aggregate duplicates by idx_cols and average
         if method == "consolidate":
-            eval_df = eval_df.groupby(idx_cols)[score_cols].mean().reset_index()
+            eval_dfs = [p for p in evals_dir.glob(f"*iteration_{iteration}*")]
 
-        eval_spectrum_ids = eval_df[col].unique()
-        eval_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
+            eval_df = concat_and_aggreagte_dfs(
+                df_paths=eval_dfs,
+                idx_cols=idx_cols,
+                score_cols=score_cols
+            )
 
-        yield iteration, eval_df, eval_md5
+            eval_spectrum_ids = eval_df[col].unique()
+            eval_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
+
+            yield iteration, eval_df, eval_md5
+
+        elif method == "rolling":
+            eval_paths = [p for p in evals_dir.glob(f"*iteration_{iteration}*")]
+            sublisted_eval_paths = create_eval_df_sublists(eval_paths)
+
+            for eval_df_paths in sublisted_eval_paths:
+                eval_df = concat_and_aggreagte_dfs(
+                    df_paths=eval_df_paths,
+                    idx_cols=idx_cols,
+                    score_cols=score_cols
+                )
+
+                eval_spectrum_ids = eval_df[col].unique()
+                eval_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
+
+                yield iteration, eval_df, eval_md5
 
 
 def generate_and_pickle_samples(
