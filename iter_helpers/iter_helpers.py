@@ -69,16 +69,26 @@ def drop_cols(df: pd.DataFrame, col_prefixes: list) -> pd.DataFrame:
 
 
 def generate_eval_df(
-    n_iterations: int, evals_dir: Path, method="consolidate", col="spectrum_id"
+        n_iterations: int, evals_dir: Path, method="consolidate",
+        idx_cols=None, score_cols=None, col="spectrum_id",
 ):
+    if idx_cols is None:
+        idx_cols = ["spectrum_id", "is_decoy"]
+    if score_cols is None:
+        score_cols = ["score"]
     for iteration in range(n_iterations):
         eval_dfs = [p for p in evals_dir.glob(f"*iteration_{iteration}*")]
 
         eval_df = pd.concat([pd.read_csv(p) for p in eval_dfs])
 
+        # warn that cols not in idx_cols or score_cols are dropped
+        for c in eval_df.columns:
+            if c not in idx_cols and c not in score_cols:
+                print(f"Warning: dropping column {c} from eval_df.")
+
         # aggregate duplicates by idx_cols and average
-        idx_cols = []
-        
+        if method == "consolidate":
+            eval_df = eval_df.groupby(idx_cols)[score_cols].mean().reset_index()
 
         eval_spectrum_ids = eval_df[col].unique()
         eval_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
@@ -173,8 +183,8 @@ if __name__ == "__main__":
         eval_df = pd.read_pickle(eval_sample_file)
         eval_data_md5 = get_idx_md5(eval_df["spectrum_id"].unique(), sort_ids=True)
         output_path = (
-            dir
-            / f"eval__path_{train_path_md5}__iteration_{i}__data_{eval_data_md5}.csv"
+                dir
+                / f"eval__path_{train_path_md5}__iteration_{i}__data_{eval_data_md5}.csv"
         )
 
         eval_df.to_csv(output_path, index=False)
