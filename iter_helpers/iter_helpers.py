@@ -76,6 +76,10 @@ def generate_eval_df(
 
         eval_df = pd.concat([pd.read_csv(p) for p in eval_dfs])
 
+        # aggregate duplicates by idx_cols and average
+        idx_cols = []
+        
+
         eval_spectrum_ids = eval_df[col].unique()
         eval_md5 = get_idx_md5(eval_spectrum_ids, sort_ids=True)
 
