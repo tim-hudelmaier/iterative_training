@@ -87,11 +87,11 @@ def generate_eval_df(
 
 
 def generate_and_pickle_samples(
-    df: pd.DataFrame,
-    sample_group_col: str,
-    n_samples: int,
-    sample_dir: Path,
-    file_extension: str,
+        df: pd.DataFrame,
+        sample_group_col: str,
+        n_samples: int,
+        sample_dir: Path,
+        file_extension: str,
 ):
     """Generate and pickle samples from input df."""
     available_samples = pd.Series(df[sample_group_col].unique())

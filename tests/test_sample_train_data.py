@@ -84,7 +84,8 @@ def test_get_idx_md5_with_series():
     ids = pd.Series(["id3", "id1", "id2", "id1"])  # Includes a duplicate
     unique_sorted_ids = sorted(ids.unique())
     assert (
-        get_idx_md5(ids) == hashlib.md5("".join(unique_sorted_ids).encode()).hexdigest()
+            get_idx_md5(ids) == hashlib.md5(
+        "".join(unique_sorted_ids).encode()).hexdigest()
     )
 
 
@@ -109,43 +110,43 @@ def test_get_idx_md5_sorting_behavior():
     "sample_files, mode, expected_outputs",
     [
         (
-            ["A", "B", "C"],
-            "permutations",
-            [
-                (0, "A", "B", get_idx_md5(["A", "B", "C"], sort_ids=False), False),
-                (1, "B", "C", get_idx_md5(["A", "B", "C"], sort_ids=False), False),
-                (2, "C", None, get_idx_md5(["A", "B", "C"], sort_ids=False), True),
-                (0, "A", "C", get_idx_md5(["A", "C", "B"], sort_ids=False), False),
-                (1, "C", "B", get_idx_md5(["A", "C", "B"], sort_ids=False), False),
-                (2, "B", None, get_idx_md5(["A", "C", "B"], sort_ids=False), True),
-                (0, "B", "A", get_idx_md5(["B", "A", "C"], sort_ids=False), False),
-                (1, "A", "C", get_idx_md5(["B", "A", "C"], sort_ids=False), False),
-                (2, "C", None, get_idx_md5(["B", "A", "C"], sort_ids=False), True),
-                (0, "B", "C", get_idx_md5(["B", "C", "A"], sort_ids=False), False),
-                (1, "C", "A", get_idx_md5(["B", "C", "A"], sort_ids=False), False),
-                (2, "A", None, get_idx_md5(["B", "C", "A"], sort_ids=False), True),
-                (0, "C", "A", get_idx_md5(["C", "A", "B"], sort_ids=False), False),
-                (1, "A", "B", get_idx_md5(["C", "A", "B"], sort_ids=False), False),
-                (2, "B", None, get_idx_md5(["C", "A", "B"], sort_ids=False), True),
-                (0, "C", "B", get_idx_md5(["C", "B", "A"], sort_ids=False), False),
-                (1, "B", "A", get_idx_md5(["C", "B", "A"], sort_ids=False), False),
-                (2, "A", None, get_idx_md5(["C", "B", "A"], sort_ids=False), True),
-            ],
+                ["A", "B", "C"],
+                "permutations",
+                [
+                    (0, "A", "B", get_idx_md5(["A", "B", "C"], sort_ids=False), False),
+                    (1, "B", "C", get_idx_md5(["A", "B", "C"], sort_ids=False), False),
+                    (2, "C", None, get_idx_md5(["A", "B", "C"], sort_ids=False), True),
+                    (0, "A", "C", get_idx_md5(["A", "C", "B"], sort_ids=False), False),
+                    (1, "C", "B", get_idx_md5(["A", "C", "B"], sort_ids=False), False),
+                    (2, "B", None, get_idx_md5(["A", "C", "B"], sort_ids=False), True),
+                    (0, "B", "A", get_idx_md5(["B", "A", "C"], sort_ids=False), False),
+                    (1, "A", "C", get_idx_md5(["B", "A", "C"], sort_ids=False), False),
+                    (2, "C", None, get_idx_md5(["B", "A", "C"], sort_ids=False), True),
+                    (0, "B", "C", get_idx_md5(["B", "C", "A"], sort_ids=False), False),
+                    (1, "C", "A", get_idx_md5(["B", "C", "A"], sort_ids=False), False),
+                    (2, "A", None, get_idx_md5(["B", "C", "A"], sort_ids=False), True),
+                    (0, "C", "A", get_idx_md5(["C", "A", "B"], sort_ids=False), False),
+                    (1, "A", "B", get_idx_md5(["C", "A", "B"], sort_ids=False), False),
+                    (2, "B", None, get_idx_md5(["C", "A", "B"], sort_ids=False), True),
+                    (0, "C", "B", get_idx_md5(["C", "B", "A"], sort_ids=False), False),
+                    (1, "B", "A", get_idx_md5(["C", "B", "A"], sort_ids=False), False),
+                    (2, "A", None, get_idx_md5(["C", "B", "A"], sort_ids=False), True),
+                ],
         ),
         (
-            ["A", "B", "C"],
-            "rolling",
-            [
-                (0, "A", "B", get_idx_md5(["A", "B", "C"], sort_ids=False), False),
-                (1, "B", "C", get_idx_md5(["A", "B", "C"], sort_ids=False), False),
-                (2, "C", None, get_idx_md5(["A", "B", "C"], sort_ids=False), True),
-                (0, "B", "C", get_idx_md5(["B", "C", "A"], sort_ids=False), False),
-                (1, "C", "A", get_idx_md5(["B", "C", "A"], sort_ids=False), False),
-                (2, "A", None, get_idx_md5(["B", "C", "A"], sort_ids=False), True),
-                (0, "C", "A", get_idx_md5(["C", "A", "B"], sort_ids=False), False),
-                (1, "A", "B", get_idx_md5(["C", "A", "B"], sort_ids=False), False),
-                (2, "B", None, get_idx_md5(["C", "A", "B"], sort_ids=False), True),
-            ],
+                ["A", "B", "C"],
+                "rolling",
+                [
+                    (0, "A", "B", get_idx_md5(["A", "B", "C"], sort_ids=False), False),
+                    (1, "B", "C", get_idx_md5(["A", "B", "C"], sort_ids=False), False),
+                    (2, "C", None, get_idx_md5(["A", "B", "C"], sort_ids=False), True),
+                    (0, "B", "C", get_idx_md5(["B", "C", "A"], sort_ids=False), False),
+                    (1, "C", "A", get_idx_md5(["B", "C", "A"], sort_ids=False), False),
+                    (2, "A", None, get_idx_md5(["B", "C", "A"], sort_ids=False), True),
+                    (0, "C", "A", get_idx_md5(["C", "A", "B"], sort_ids=False), False),
+                    (1, "A", "B", get_idx_md5(["C", "A", "B"], sort_ids=False), False),
+                    (2, "B", None, get_idx_md5(["C", "A", "B"], sort_ids=False), True),
+                ],
         ),
     ],
 )
@@ -153,15 +154,15 @@ def test_generate_next_train_run(sample_files, mode, expected_outputs):
     gen = generate_next_train_run(sample_files, mode=mode)
 
     for i, (idx, train_sample_file, eval_sample_file, md5, finished_path) in enumerate(
-        gen
+            gen
     ):
         assert (
-            idx,
-            train_sample_file,
-            eval_sample_file,
-            md5,
-            finished_path,
-        ) == expected_outputs[i]
+                   idx,
+                   train_sample_file,
+                   eval_sample_file,
+                   md5,
+                   finished_path,
+               ) == expected_outputs[i]
 
 
 def test_generate_eval_df_consolidate_mode():
@@ -186,12 +187,59 @@ def test_generate_eval_df_consolidate_mode():
 
     expected_results = [iteration_1_df, iteration_2_df]
 
-    gen = generate_eval_df(n_iterations=3, evals_dir=test_dir)
+    gen = generate_eval_df(n_iterations=2, evals_dir=test_dir)
 
     for iteration, eval_df, eval_md5 in gen:
         assert eval_md5 == original_md5
 
-        sorted_df = eval_df.sort_values(by=["spectrum_id"])
-        sorted_exp = expected_results[iteration - 1].sort_values(by=["spectrum_id"])
+        sorted_df = eval_df.sort_index(axis=1).sort_values(
+            by=["spectrum_id"]).reset_index(drop=True)
+        sorted_exp = expected_results[iteration].sort_index(axis=1).sort_values(
+            by=["spectrum_id"]).reset_index(drop=True)
+
+        assert sorted_df.equals(sorted_exp)
+
+
+def test_generate_eval_df_rolling_mode():
+    test_dir = pytest._test_path / "_data"
+
+    original_md5 = get_idx_md5(["A", "B", "C", "D"], sort_ids=True)
+
+    iteration_1_df_A = pd.DataFrame(
+        {
+            "spectrum_id": ["A", "B", "C", "D", "A", "B", "C", "D"],
+            "score": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+            "is_decoy": [0, 0, 0, 0, 1, 1, 1, 1],
+        }
+    )
+    iteration_1_df_B = pd.DataFrame(
+        {
+            "spectrum_id": ["A", "B", "C", "D", "A", "B", "C", "D"],
+            "score": [2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0],
+            "is_decoy": [0, 0, 0, 0, 1, 1, 1, 1],
+        }
+    )
+    iteration_2_df = pd.DataFrame(
+        {
+            "spectrum_id": ["A", "B", "C", "D", "A", "B", "C", "D"],
+            "score": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+            "is_decoy": [0, 0, 0, 0, 1, 1, 1, 1],
+        }
+    )
+
+    expected_results = [
+        (iteration_1_df_A, iteration_1_df_B),
+        (iteration_2_df, iteration_2_df)
+    ]
+
+    gen = generate_eval_df(n_iterations=2, evals_dir=test_dir)
+
+    for iteration, eval_df, eval_md5 in gen:
+        assert eval_md5 == original_md5
+
+        sorted_df = eval_df.sort_index(axis=1).sort_values(
+            by=["spectrum_id"]).reset_index(drop=True)
+        sorted_exp = expected_results[iteration].sort_index(axis=1).sort_values(
+            by=["spectrum_id"]).reset_index(drop=True)
 
         assert sorted_df.equals(sorted_exp)
