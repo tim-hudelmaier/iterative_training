@@ -81,6 +81,12 @@ def test_get_idx_md5_with_list():
     assert get_idx_md5(ids) == hashlib.md5("".join(sorted_ids).encode()).hexdigest()
 
 
+def test_get_idx_md5_with_list_and_duplicate():
+    ids = ["id3", "id1", "id2", "id1"]
+    sorted_ids = sorted(["id3", "id1", "id2"])
+    assert get_idx_md5(ids) == hashlib.md5("".join(sorted_ids).encode()).hexdigest()
+
+
 def test_get_idx_md5_with_series():
     ids = pd.Series(["id3", "id1", "id2", "id1"])  # Includes a duplicate
     unique_sorted_ids = sorted(ids.unique())
@@ -93,6 +99,26 @@ def test_get_idx_md5_with_series():
 def test_get_idx_md5_with_string():
     id_str = "id1"
     assert get_idx_md5(id_str) == hashlib.md5(id_str.encode()).hexdigest()
+
+
+def test_get_idx_md5_with_series_of_ints():
+    ids = pd.Series([123, 456, 789, 123])  # Includes a duplicate
+    unique_sorted_ids = sorted(ids.unique())
+    unique_sorted_ids = [str(i) for i in unique_sorted_ids]
+    assert (
+            get_idx_md5(ids) == hashlib.md5(
+        "".join(unique_sorted_ids).encode()).hexdigest()
+    )
+
+
+def test_get_idx_md5_with_list_of_ints():
+    ids = [123, 456, 789, 123] # Includes a duplicate
+    unique_sorted_ids = sorted(list(set(ids)))
+    unique_sorted_ids = [str(i) for i in unique_sorted_ids]
+    assert (
+            get_idx_md5(ids) == hashlib.md5(
+        "".join(unique_sorted_ids).encode()).hexdigest()
+    )
 
 
 def test_get_idx_md5_with_invalid_type():

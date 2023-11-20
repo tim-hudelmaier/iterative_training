@@ -21,13 +21,14 @@ def get_idx_md5(id_list: list, sort_ids=True):
     elif isinstance(id_list, pd.Series):
         id_list = id_list.unique().tolist()
     elif isinstance(id_list, list):
-        pass
+        id_list = list(dict.fromkeys(id_list))
     elif isinstance(id_list, np.ndarray):
         id_list = np.unique(id_list).tolist()
     else:
         raise ValueError(
             f"id_list must be a list or pd.Series, you provided {type(id_list)}"
         )
+    id_list = [str(i) for i in id_list]
     all_ids_str = (
         "".join(sorted(id_list.copy())) if sort_ids else "".join(id_list.copy())
     )
