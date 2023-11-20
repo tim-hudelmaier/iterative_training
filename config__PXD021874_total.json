@@ -1,0 +1,798 @@
+{
+    "input_files": {
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/ec746a0b441f7ea14daf33e82b86603d_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/fbe0b24cd5cceb87e35b81d4615cba26_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/40d17c83a75a7e6e95a181b3880c1a64_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/520356eab9d2c33340dd609107c59f10_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/c95f95ac0ef7f9c1c01bf93dda81426f_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/98ae22b3c024d58c07fe86d1d2e8118f_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/94571a9913353d129b6f55570293e860_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/b68cba691ab062aa081cd3addd8676c6_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/5c3859245d163f5456b88ee37169bfdf_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/968c1bc9e72f39408e89e7c7637eb324_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/f0bf0082784a80b4f8ae898f829eaa93_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/51da7d81e6e685a93f25678c0ca66531_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/056360e07cc963791e71e54d14b1a38f_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/a3ce05129a7edb2f66e42f5d5ef96c6a_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/79c4b7da72b774825e8a6339d4607289_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/e6d51fd622821305624b790362e61df8_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/e738aa35078fd27e65810e180491ac1e_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/3d087bdbdb5aceb92e8de747e56b0775_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2d7964280bdf8e06413859a6cbc0c15a_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/60a831cf82c69d3e7f6391e536d8983d_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/16b0c90df0af5c99b4c5e25b0fd56191_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/00cc01d2fe74856cb8a781cf2eb3b123_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2cd9408f673ee32da970c22a6cdecf30_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/150b0fd2ae7ebffed04e148ba773f4da_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/fc4f43d1fb1121e1ef82a51d19ca0ccc_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2ea1e71bfd93835ec77006702ed35d16_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/13ae7dd17461bcb122b4abc1d217bfa2_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/19438ae61179fd629259400cc99893c4_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/cb120bdddce26099c240481a020557bc_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/5eee87d389c2108b7a6ed11dd005372f_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/9541246efc2b8e081c9060e61f55f7b0_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/3d41e860920abe4c34493d62b23bcf82_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/d32cf6ed4fb90131b3961ea917516c32_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/dbbdfc4616c31403ee3d06dbd911e2ab_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/6b6f87d7398d7d261e5ec35f43bb092e_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/73a3a278d1be234347efaf21075885de_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/bc80d471ecd65ad5eec4ac0f7513a577_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/9179d3161984f137bf2b0ca04049464c_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/99241e3e4fee921d68042d5580f20dc7_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/8fa253946b9b6363a418905d8ba34bbd_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/4e54e2e5449349660ce67ef1a7a5cbb4_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/bac89f03da9128ef6be4cc185d47592e_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/82f7f3109e469f93e3c523a66d53eb4d_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2cee8d63bedfcdea87a6eb6f61c8e319_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/a56656035fe4b025f5fcc61cc557ef12_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/24ebb7dab96f25608058100a705437b8_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/f13fb2a14bca6a6e842f2ce921beb2e8_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/34423fced3da4252c401fc9304b9e8e2_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/5170e93e37171674c6a41d2c13b01440_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/26a5dd02af942b9e4c95de34b7654703_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/c8ebfcd4e5741e55d539861d3fc25ca9_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/e747b10f12358858fd9cb14f93ea1bbe_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/93f8e99ecf77342e17b9e73c9f310420_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/8d79d08bb9ba293ac808b7d83df22b18_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/73bf20cc3e89d855dc1b1b9ad3a95c56_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2f807f6611f2674b8247efd29f84be69_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/69722e13fa73d789fc2ac193b404b94a_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/00796bc595a30d4d679f032fc36fbf1d_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/4e22be4652f4e4823bd832b0dde04dca_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/6df430e054c60efb66ff4a33a11cea12_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/958e549d4e101fbb5f57adbdaaaa84ad_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/71c591ada949800956e58830876036d0_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/20f73511225a92832fa71076c11b7b50_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/7d27954932ddd16e0486bdd63c2656b1_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/fdc13b46cffda36114fcee5a31873b6e_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/d1bce29698baf958bf478394b00923c2_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/a5a53ec8c1a5788b57369c497938d819_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/c31382cbf8fac370a129fa7e5b9f2232_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/7280e6b9db8bcc600e6365b23f38a52b_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/bf93db4809799769e14c54c5c3d504e2_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/824885d5d524ac98c266cdb34a5efe3a_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/af7d0fd8de9db2da2a4edbcc382bf7ad_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/689b87ba5b614d337be7f0628b3f4a4d_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/250c0e235971306df8ad92426075ade2_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/e9af63035e8cc16aa4659f301ba9675b_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/5f181fab7a462a921e62daa85d205d65_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/c0632443a7e0b1dc614ab5930cbb2183_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/7b7443c6872734c89529aa6f6307c4eb_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/89a2049b255b414a997cb147470e2d85_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/f83a6990590c8df2078cb6a5428c5644_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/b0e301ba16184dfd141e8fa461fc5c80_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/ba3f380a10b34ec7ebac90f07b966b86_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/fb8e099e02dc186625843f3b4309aba8_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/b30fb5c2529bfcb4184142e9be6e5bad_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/16e7cb57f11e1ea98dadd51dda6d6e25_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/af338ce1153ee70d7c002f20502bd6a8_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/83568bd58299867cb8c368fd2b74bd08_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/94be0a45ea44e9589535a3d2eda1964b_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/484ed5861f9b5ca9f234636df05dfb34_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/0688d5022b9733662b8157f8745840cf_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/ac006dc89116f5ab244b88e888fdc082_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/c15363d6f50f5256ea88145427d8773e_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/ed73915b80edbd98faef2a9595dd1aea_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/a4dd979d26ab970ddeb858b2cb25ce60_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/d3b03d729796e54a91c2d66a3fb6b0f6_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2935b8fc941261b134084b083575e356_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/3ed4bbcebc3bd900f5f870db9f5ccb6d_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/d115af4c2708def676e83bf49dbda230_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/6042b349269675d04206fc3ddb1cd5c5_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/8b51f583974e48bff58df768fee13193_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/8448806934024474a69f5c07751d626d_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/d70a7619564787a48e3b7fd8ca35086f_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/28a19fac2c241435832700c35c1fee05_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/4d2bee7ecc1817adf2963daf9fbf4d40_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/a137778e80afe9648c9c0811b8640a4f_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2e885d0d01fbd4de8a101434ad9800de_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/6dd9fe7e480cbeaf6129722ffc9f4f17_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/04d1610b87350f07a759621548bbd8aa_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/4ffc2ed1130600a622d157133049b3f4_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/1d12d2cbb2cf99518858259708d63d6d_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/dae38766f7514d0d6230c86a056bee0f_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/9558193d60a08caf4ffd1c5f21594bb1_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/7255e1bbb0edbea12f4ca904b92fe042_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/e45232f022fc680f1f595d7d52701b7f_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/4b2216c073134f9607641e925b0acac2_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/6d2c00398d60b1b4a1aa89af9a96204d_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/bf5afa3b1446c55130a05006d5e41cfc_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/b406afdc0a4156e206a6b065843194ec_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/e41f4b5323263233dff119ce5c8a8d3a_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/39b12cb28ce530233e934938e87f2811_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2dcf7bce65e6dd1d8c5aa459b7874b58_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/fa55d71aca97fb34dc31b5dac867918e_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/9ca99af4cb8ab6b050afd038a9d77328_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/61bb3eca2a1c0cf0d923ce325436c099_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/89ab3eb605bc3798ce571fde460ba58a_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/374e99827d1a89f7a160663477704f63_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/644a3586957cff543d8bbd7edbacb028_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/38f05ca16a73427836907adfb11c62ea_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/28aac4d755fb6aa3f4de397abb16d14d_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/5a293be34abf14b39daa2694e45da4fb_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/9082bc6e9cd2be141e6b7633d340c969_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/def2e80ace52d6e01e7596762d120597_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/811d738a68b9bd015daf8b1a8edc8358_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/8a623d151d63928e01ef55a4fb060789_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/f5b489cdaa626ff87e607daaa5ee5bca_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/98f43e4ca11a115f83cbff2a8d6ab3a8_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/c25b3e60a69703c48506ac29ebe13ec0_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/80f0d0fcf2ee6773cf2c1e2d1a018a78_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/0737e6a2d29d8f67b054ac11a181f25b_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/7ac88f54ef8ecdcdf62ccb1b83e48856_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/7125da7042b3b4224ec3ced93d4be8a0_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/7ef799fc96e0c4535b14817a92b1d27a_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/229207edb58c13bfb91b718b0908fee8_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/8bfbb14606b97cae61dbd166234e4696_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/f6fde4097a39e1ba375054ee36a13670_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/682ea540f95f3c405cbc930ed81c7674_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2ac0cc89c89b720318cb9acd5385b3cc_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/6b969f2885eceb8c092116cdf683e25d_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/1b4e2e528695340a0141222effb12c6a_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/eef9ee1b0f9a6514ef6b5780facfe42d_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/ecf6b57e3246fd4cfa6e2d12a34664d8_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/021176752173704be83163af5a7abc5c_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/fd5fc9deeec097ca3fda8d26eea9d8fa_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/b2b672e00714aa802d6a4d8ab42e3ea3_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/ea12585ec61ba833261c1e4c949742a5_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/20ed972fe1190abcda5022e9e9c77f4e_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/d1e7f89cae501f871024887241f4983a_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/96b8c3196b5d24926ad78fd957c4b8ef_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/a08c1dc5c68de399eb01b34cc4313d91_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/202566bdd02b83c1bb927c0859ae8f7a_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/6cb7b30bb4357b8b070626b07a696d02_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/8f4d3a0c85a690ee04d52d51847cc117_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/0dead2cbfbc828f82ac61128953e3e79_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/e91c73dc4c51034e3720b0ef108ef945_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/4ba2944840c0f1effa9df9890ac4333a_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/0c9c0d09a12eea16aaf12cf8b5f0b3a4_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/d82130717f884f40340c826d3832df68_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/a6eed818d5510c6ac9fc9d04787dd5c4_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/aa5c137b1da9c8b95633d3060ee39d0c_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/5259a92fcc64260e3a3955262f920b99_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/c7697c4fa3a07b6284275fbe0ee092e5_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/6059f989120659a08a47f801298f2f4a_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/c37071354bdb1f4a3e3f9ece8bc94a2d_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2ff220e8a654a7971162fb156b0d49cc_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/d59b3475be541d9b1da86bffac563d49_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/d1450bf04b36d0686a99dd2f68a5ceba_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/d30f93b41523b29780279e23e3646737_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/7db238df8c8116be486228e481c3f10f_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/01837936e44ebff3984e4f42b82a0234_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/51528596cc46048fe324337d3233fa3f_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/c334ebb5dc410bdc77e1bb2c21df36a9_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/85a31df80c000ccae5aa90da95618fa9_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/ad18d99ff2a9908128150b79ae9baacb_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/de4a02a7c10457ba1548de39bb4784cd_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/05d069539c792ea94c33309f2adf6a65_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/ac92cc3371ce9cd1f99635f7ea1317c1_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/e5e43068513338bfc25970b814e6e777_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/94a5374d6042b3737548797f27fe9d81_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/5cf60664ba2378cd61fa9d6fcab5318a_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/2bd957bbb9bbfb04792eae94488e345f_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/7f403e198a51aeeacb1a51351fb1a452_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/46a4e3ab73da7311e094ed6f1aa5ac34_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/39988328aa0b1b072263ebb3b09e43b7_1_of_1.pyiohat.csv": {
+            "engine": "msgfplus_2021_03_22",
+            "score_col": "ms-gf:evalue"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/38e6826fa0abce6f7a6188070b50c1c8_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/e080d4dcee8c477800ebf94ee184ed5b_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/6213672f78a881978ad9d10f7c580d83_1_of_1.pyiohat.csv": {
+            "engine": "msfragger_3_0",
+            "score_col": "msfragger:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/f82efc6dcd908e58b3da2030a50b8cae_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        },
+        "/Users/tjh63945/DEV/ursgalOutputs/paperPXD021874/pyiohat_1_7_1_w1_7ef0257438c92c90c4aebaee159757a3/f0b0f62c221e9b0163a0113765670025_1_of_1.pyiohat.csv": {
+            "engine": "xtandem_vengeance",
+            "score_col": "x!tandem:hyperscore"
+        }
+    },
+    "initial_engine": "msfragger_3_0",
+    "universal_feature_cols": true
+}
